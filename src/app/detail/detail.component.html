@@ -1,0 +1,12 @@
+<mat-card *ngIf="card" style="margin-top: 30px">
+  <img [src]="card.avatar" />
+
+  <mat-card-content style="padding: 10px">
+    <p style="margin: 0; padding: 0">
+      Name : {{ card.first_name }} {{ card.last_name }}
+    </p>
+    <p style="margin: 0; padding: 0">
+      Email : {{ card.email }}
+    </p></mat-card-content
+  >
+</mat-card>

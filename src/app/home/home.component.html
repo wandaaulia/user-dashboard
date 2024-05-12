@@ -1,0 +1,30 @@
+<div class="container-home">
+  <div class="container-card" *ngIf="cards">
+    <div *ngFor="let card of cards">
+      <mat-card class="img-card" (click)="nextPage(card.id)">
+        <img
+          class="img-avatar"
+          mat-card-avatar
+          [src]="card.avatar"
+          style="margin: 10px 10px auto auto"
+        />
+        <mat-card-content class="card-content">
+          <p class="f-name">{{ card.first_name }} {{ card.last_name }}</p>
+          <p class="l-name">
+            {{ card.email }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <mat-paginator
+    style="width: 100%; margin-top: 10px"
+    [length]="18"
+    [pageIndex]="pageIndex"
+    [hidePageSize]="true"
+    aria-label="Select page"
+    [pageSize]="6"
+    (page)="handlePageEvent($event)"
+  >
+  </mat-paginator>
+</div>

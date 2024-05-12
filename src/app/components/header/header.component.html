@@ -1,0 +1,38 @@
+<div
+  style="
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 217px;
+    padding-top: 20px;
+  "
+>
+  <div
+    routerLink="/"
+    *ngIf="label !== 'Users'"
+    style="
+      padding: 0;
+      background-color: lightblue;
+      font-size: 12px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    "
+  >
+    <mat-icon style="font-size: 20px; height: fit-content"
+      >keyboard_backspace</mat-icon
+    >
+  </div>
+  <p
+    style="
+      margin: auto auto auto auto;
+      font-size: 20px;
+      background-color: lightcoral;
+      text-align: center;
+      padding: 0;
+    "
+  >
+    {{ label }}
+  </p>
+</div>
