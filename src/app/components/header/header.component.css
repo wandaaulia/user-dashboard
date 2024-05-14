@@ -1,0 +1,40 @@
+.container-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.container-back {
+  padding: 0;
+  width: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.label-header {
+  margin: auto auto auto 20%;
+  font-size: 20px;
+  text-align: center;
+  padding: 0;
+}
+
+@media screen and (min-width: 600px) {
+  .container-layout {
+    justify-content: flex-start;
+    margin-top: 50px;
+  }
+
+  .container-back {
+    width: 40px;
+    justify-content: flex-start;
+  }
+
+  .label-header {
+    margin-left: 40%;
+  }
+}

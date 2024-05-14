@@ -11,9 +11,5 @@ export class LayoutComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    this.route.firstChild?.data.subscribe((data) => {
-      this.componentName = data['name'];
-    });
-  }
+  ngOnInit(): void {}
 }

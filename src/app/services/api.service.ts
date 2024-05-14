@@ -15,9 +15,13 @@ export class ApiService {
 
   public APIGetUserList(
     page: number,
-    query?: string
+    query?: number
   ): Observable<UsersResponse> {
     let queryParams = `?page=${page}`;
+
+    if (query) {
+      queryParams = `?page=${page}&&id=${query}`;
+    }
     return this.httpClient.get<UsersResponse>(this.URLUser + queryParams);
   }
 

@@ -43,6 +43,12 @@
   cursor: pointer;
 }
 
+mat-paginator {
+  width: 100%;
+  margin: auto;
+  float: right;
+}
+
 @media screen and (min-width: 600px) {
   .container-home {
     width: 80%;
@@ -54,6 +60,10 @@
 
   .card-content {
     padding: 15px;
+  }
+
+  mat-paginator {
+    width: 600px;
   }
 }
 

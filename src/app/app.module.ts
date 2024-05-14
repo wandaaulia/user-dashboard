@@ -7,11 +7,18 @@ import { HomeComponent } from './home/home.component';
 import { LayoutComponent } from './layout/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { DetailComponent } from './detail/detail.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MaterialModule } from './shared/material.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { CacheInterceptor } from './core/cache.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,6 +27,7 @@ import { MaterialModule } from './shared/material.module';
     LayoutComponent,
     HeaderComponent,
     DetailComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,8 +37,19 @@ import { MaterialModule } from './shared/material.module';
     MatCardModule,
     MatPaginatorModule,
     MaterialModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CacheInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

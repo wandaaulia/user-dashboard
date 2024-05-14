@@ -3,6 +3,7 @@ import { ApiService } from '../services/api.service';
 import { UserData } from '../models/userlist';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -14,22 +15,48 @@ export class HomeComponent implements OnInit {
 
   cards: UserData[] = [];
 
-  pageIndex = 0;
+  pageIndex: number = 0;
+
+  loading: boolean = false;
+
+  id: number = 0;
+
+  card: any = null;
+
+  error: boolean = false;
 
   ngOnInit() {
-    this.getData(1);
+    this.getData();
   }
 
-  getData(a: number) {
-    this.apiService.APIGetUserList(a).subscribe((res) => {
-      if (res.data.length > 0) {
-        this.cards = res.data;
-      } else {
-        this.cards = [];
-      }
+  getData(page?: number) {
+    this.loading = true;
 
-      return;
-    });
+    this.apiService.APIGetUserList(page ? page : 1, this.id).subscribe(
+      (res) => {
+        if (res.data) {
+          if (res.data.length > 0) {
+            this.loading = false;
+            this.error = false;
+            this.card = null;
+            this.cards = res.data;
+            return;
+          } else {
+            this.loading = false;
+            this.error = false;
+            this.cards = [];
+            this.card = res.data;
+            return;
+          }
+        }
+      },
+      (err: HttpErrorResponse) => {
+        this.loading = false;
+        this.error = true;
+        this.cards = [];
+        this.card = null;
+      }
+    );
   }
 
   handlePageEvent(e: PageEvent) {
@@ -40,5 +67,13 @@ export class HomeComponent implements OnInit {
 
   nextPage(id: number) {
     this.router.navigate(['/detail', id]);
+  }
+
+  handleChangeParent(p: any) {
+    console.log('parentt ', p);
+
+    this.id = p;
+
+    this.getData();
   }
 }

@@ -1,12 +1,39 @@
-<mat-card *ngIf="card" style="margin-top: 30px">
-  <img [src]="card.avatar" />
-
-  <mat-card-content style="padding: 10px">
-    <p style="margin: 0; padding: 0">
-      Name : {{ card.first_name }} {{ card.last_name }}
-    </p>
-    <p style="margin: 0; padding: 0">
-      Email : {{ card.email }}
-    </p></mat-card-content
+<div class="container-detail">
+  <app-header label="Detail" />
+  <div
+    *ngIf="card && !loading"
+    style="margin-top: 30px; border: none"
+    class="content-detail"
   >
-</mat-card>
+    <div class="img-user">
+      <img [src]="card.avatar" class="img-user-width" />
+    </div>
+
+    <div style="padding: 40px 10px" class="user-detail">
+      <div style="display: flex; flex-direction: row; align-items: center">
+        <p style="margin: 0; padding: 0; width: 30%" class="label-user">Name</p>
+        <p class="text-detail">{{ card.first_name }} {{ card.last_name }}</p>
+      </div>
+      <div
+        style="
+          margin-top: 20px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        "
+      >
+        <p style="margin: 0; padding: 0; width: 30%">Email</p>
+        <p class="text-detail">
+          {{ card.email }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="loading"
+    style="display: flex; justify-content: center; margin-top: 40px"
+  >
+    <mat-spinner style="width: 30px"></mat-spinner>
+  </div>
+</div>

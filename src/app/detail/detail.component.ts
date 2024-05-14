@@ -15,16 +15,22 @@ export class DetailComponent implements OnInit {
 
   card!: UserData;
 
+  loading: boolean = false;
+
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    console.log('id ', this.id);
     this.getDetail(this.id);
   }
 
   getDetail(id: number) {
+    this.loading = true;
+
     this.apiService.APIGetUser(id).subscribe((res) => {
       if (res.data) {
+        this.loading = false;
         this.card = res.data;
+      } else {
+        this.loading = false;
       }
     });
   }
