@@ -1,3 +1,3 @@
 # User Dashboard
 
-Run `ng start` for start the project.
+Run `npm start` for start the project.
